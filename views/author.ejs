@@ -7,11 +7,21 @@
 </head>
 <body>
   <h1><%= author.name %></h1>
+  <a href="/">Return home</a>
 
   <% for (let book of author.books) { %>
     <h4><%= book.name %></h4>
     <p><%= book.nof_pages %> pages</p>
   <% } %>
-  <a href="/">Return home</a>
+  <hr>
+    <h1>Add a new book</h1>
+    <form action="/<%= author.id %>" method="post">
+        <label for="name">Book name</label>
+        <input type="text" id="name" name="book[name]" >
+        <label for="pages">Book name</label>
+        <input type="text" id="pages" name="book[nof_pages]" >
+        <button type="submit">Add book</button>
+    </form>
+  
 </body>
 </html>

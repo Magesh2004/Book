@@ -44,3 +44,15 @@ app.post('/',(req,res)=>{
     newAuthor.save();
     res.redirect('/');
 })
+app.post('/:id',async(req,res)=>{
+    const {id} = req.params;
+    const author = await Author.findById(id);
+    const book = new Book(req.body.book);
+    book.author = author._id;
+    author.books.push(book);
+    await author.save();
+    await book.save()
+    console.log(author);
+    console.log(book);
+    res.redirect(`/books/${id}`);
+})
