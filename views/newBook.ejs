@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Adding a new book</h1>
+    <form action="/<%= author.id %>">
+        <label for="name">Book name</label>
+        <input type="text" id="name" name="book[name]" >
+        <label for="pages">Book name</label>
+        <input type="text" id="pages" name="book[nof_pages]" >
+        <button type="submit">Add book</button>
+    </form>
+</body>
+</html>

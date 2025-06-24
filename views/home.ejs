@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book India</title>
+</head>
+<body>
+    <h1>Books</h1>
+    <a href="/new">Add an author</a>
+    <% for(let author of authors) {%>
+        <h3><%= author.name %></h3>
+        <p><%= author.bio %></p>
+        <a href="/books/<%= author._id  %>">view books</a>
+    <% } %>
+</body>
+</html>
