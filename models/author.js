@@ -10,4 +10,14 @@ const AuthorSchema = Schema({
         ref : 'Book'
     }]
 })
+
+AuthorSchema.post('findOneAndDelete',async function(doc){
+    if(doc){
+        await books.deleteMany({
+            _id:{
+                $in:doc.reviews
+            }
+        })
+    }
+})
 module.exports = mongoose.model('Author',AuthorSchema);
