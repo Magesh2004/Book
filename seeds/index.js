@@ -37,10 +37,6 @@ const seed = async()=>{
         console.log(`Assigning ${createdBooks[i].name} to ${createdAuthors[i].name}`);
         await createdAuthors[i].save();
     }
-    console.log("The data has been inserted");
-    const authorsCheck = await Author.find().populate('books');
-console.log("Final authors with books:", JSON.stringify(authorsCheck, null, 2));
-
     mongoose.disconnect()
 }
 seed()

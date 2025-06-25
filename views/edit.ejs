@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Edit page</h1>
+    <form action="/books/<%=author._id  %>/edit?_method=PUT" method="post">
+        <label for="name">Author name</label>
+        <input type="text" id="name" name="author[name]" value="<%= author.name  %>">
+        <label for="name">Author bio</label>
+        <input type="text" id="name" name="author[bio]" value="<%= author.bio  %>">
+        <button type="submit">Update</button>
+    </form>
+</body>
+</html>
