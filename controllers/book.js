@@ -10,8 +10,7 @@ module.exports.createBook = async(req,res)=>{
     book.author = author._id;
     author.books.push(book);
     await author.save();
-    await book.save()
-    res.json({book});
+    await book.save();
     sendResponse(res,201,"Successfully created",{book})
 }
 
