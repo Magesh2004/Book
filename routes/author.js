@@ -1,37 +1,17 @@
-const express = require('express')
+const express = require('express');
 const router = express.Router();
-const catchAsync = require('../utils/catchAsync')
+const catchAsync = require('../utils/catchAsync');
 
-const Author = require('../models/author');
+const author = require('../controllers/author');
 
 router.route('/')
-.get(catchAsync(async(req,res)=>{
-    const author = await Author.find({});
-    res.json({author});
-}))
-.post((req,res)=>{
-    const newAuthor = new Author(req.body.author)
-    newAuthor.save();
-    res.json({newAuthor})
-})
+.get(catchAsync(author.getAllAuthor))
+.post(author.createAuthor);
 
 router.route('/:id')
-.get(catchAsync(async(req,res)=>{
-    const {id} = req.params;
-    const author = await Author.findById(id).populate('books');
-    res.json({author});
-}))
-.put(catchAsync(async(req,res)=>{
-    const id = req.params.id;
-    const author = await Author.findByIdAndUpdate(id,req.body.author);
-    author.save();
-    res.json({author})
-}))
-.delete(catchAsync(async(req,res)=>{
-    const {id} = req.params;
-    const author = await Author.findByIdAndDelete(id);
-    res.json({author});
-}))
+.get(catchAsync(author.getIndividualAuthor))
+.put(catchAsync(author.updateAuthor))
+.delete(catchAsync(author.deleteAuthor));
 
 module.exports = router;
 

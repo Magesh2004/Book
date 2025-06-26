@@ -1,13 +1,11 @@
 const mongoose = require('mongoose');
 const Author = require('../models/author');
 const Book = require('../models/book')
+const connectDB = require('../config/database')
 
-mongoose.connect('mongodb://localhost:27017/Book');
-const db = mongoose.connection;
-db.on('error',console.error.bind(console,"Connection error"));
-db.once('open',()=>{
-    console.log("The database is connected");
-})
+
+connectDB()
+
 const seed = async()=>{
     await Author.deleteMany({});
     await Book.deleteMany({});
