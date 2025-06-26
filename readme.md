@@ -6,7 +6,7 @@ This project is a basic **CRUD API** server that demonstrates **one-to-many** an
 
 Each **author** can have **multiple books**, and each **book** belongs to a **single author**.
 
-It was built for learning purposes to understand how to model and implement relational-like behavior in **MongoDB**.
+It was built for learning purposes to understand how to model and implement relational-like behavior in **PostgreSQL**.
 
 ---
 
@@ -14,8 +14,8 @@ It was built for learning purposes to understand how to model and implement rela
 
 - **Node.js**
 - **Express.js**
-- **MongoDB**
-- **Mongoose**
+- **PostgreSQL**
+- **pg**
 - **nodemon** (for dev)
 
 ---
