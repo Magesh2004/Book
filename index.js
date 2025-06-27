@@ -3,7 +3,7 @@ const app = express();
 const connectDB = require('./config/database');
 
 const ExpressError = require('./utils/ExpressError');
-const {sendResponse} = require('./config/sendResponse')
+const {sendResponse} = require('./utils/sendResponse')
 
 const authorRouter = require('./routes/author');
 const bookRouter = require('./routes/book');
@@ -19,8 +19,8 @@ connectDB();
 
 app.use(express.json())
 
-app.use('/author',authorRouter)
-app.use('/author/:id/book',bookRouter)
+app.use('/',authorRouter)
+app.use('/',bookRouter)
 
 app.all('/{*any}',(req,res,next)=>{
     next(new ExpressError(404,"Page not found"))

@@ -4,11 +4,11 @@ const catchAsync = require('../utils/catchAsync');
 
 const author = require('../controllers/author');
 
-router.route('/')
+router.route('/author')
 .get(catchAsync(author.getAllAuthor))
 .post(author.createAuthor);
 
-router.route('/:id')
+router.route('/author/:id')
 .get(catchAsync(author.getIndividualAuthor))
 .put(catchAsync(author.updateAuthor))
 .delete(catchAsync(author.deleteAuthor));

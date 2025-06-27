@@ -1,6 +1,6 @@
 const Author = require('../models/author');
 const Book = require('../models/book');
-const {sendResponse} =  require('../config/sendResponse');
+const {sendResponse} =  require('../utils/sendResponse');
 const ExpressError = require('../utils/ExpressError');
 
 module.exports.createBook = async(req,res)=>{

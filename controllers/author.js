@@ -1,5 +1,5 @@
 const Author = require('../models/author');
-const {sendResponse} = require('../config/sendResponse')
+const {sendResponse} = require('../utils/sendResponse')
 const ExpressError = require('../utils/ExpressError')
 
 module.exports.getAllAuthor = async(req,res)=>{
