@@ -1,40 +1,34 @@
-const mongoose = require('mongoose');
-const Author = require('../models/author');
-const Book = require('../models/book')
-const connectDB = require('../config/database')
+const { connectDB, connection } = require('../config/database');
 
+const authorData = require('./authorData');
+const bookData = require('./bookData');
 
-connectDB()
+const catchAsync = require('../utils/catchAsync')
 
-const seed = async()=>{
-    await Author.deleteMany({});
-    await Book.deleteMany({});
-    
-    const authorsData = [
-      { name: "J.K. Rowling", bio: "British author, best known for the Harry Potter series." },
-      { name: "George R.R. Martin", bio: "Author of the fantasy series A Song of Ice and Fire." },
-      { name: "Agatha Christie", bio: "Queen of mystery and detective fiction." },
-      { name: "Dan Brown", bio: "American author known for thriller novels like The Da Vinci Code." },
-      { name: "Haruki Murakami", bio: "Japanese author famous for surreal storytelling." }
-    ];
+connectDB();
 
-    const createdAuthors = await Author.insertMany(authorsData);
+const seedDb = catchAsync(async()=>{
+  await connection.query('delete from book');
+  await connection.query('delete from author');
+  
+const authorIds = [];
 
-    const booksData = [
-      { name: "Harry Potter and the Philosopher's Stone", nof_pages: 223, author: createdAuthors[0]._id },
-      { name: "A Game of Thrones", nof_pages: 694, author: createdAuthors[1]._id },
-      { name: "Murder on the Orient Express", nof_pages: 256, author: createdAuthors[2]._id },
-      { name: "The Da Vinci Code", nof_pages: 454, author: createdAuthors[3]._id },
-      { name: "Norwegian Wood", nof_pages: 296, author: createdAuthors[4]._id }
-    ];
-
-    const createdBooks = await Book.insertMany(booksData);
-
-    for(let i = 0;i<createdAuthors.length;i++){
-        createdAuthors[i].books = [createdBooks[i]._id];
-        console.log(`Assigning ${createdBooks[i].name} to ${createdAuthors[i].name}`);
-        await createdAuthors[i].save();
-    }
-    mongoose.disconnect()
+for(const author of authorData){
+  const result = await connection.query(
+  'INSERT INTO author(name, bio) VALUES($1, $2) RETURNING id',
+  [author.name, author.bio]
+);
+authorIds.push(result.rows[0].id);
 }
-seed()
+
+
+for(const book of bookData){
+  await connection.query('insert into book(name,nof_pages,author_id) values($1,$2,$3)',[book.name,book.nof_pages,authorIds[book.authorIndex]]);
+}
+
+console.log("data updated")
+await connection.end();
+console.log("Data base closed");
+
+})
+seedDb();
