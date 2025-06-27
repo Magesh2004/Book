@@ -56,7 +56,7 @@ It was built for learning purposes to understand how to model and implement rela
 ```json
 {
   "status": 201,
-  "message": "Succesfully Created",
+  "message": "Successfully Created",
   "data": {}
 }
 ```
@@ -72,8 +72,8 @@ It was built for learning purposes to understand how to model and implement rela
 ```json
 {
   "book": {
-    "name": "The tester",
-    "nof_pages": 569
+    "name": "The Da Vinci Code",
+    "nof_pages": 454
   }
 }
 ```
@@ -83,7 +83,7 @@ It was built for learning purposes to understand how to model and implement rela
 ```json
 {
   "status": 201,
-  "message": "Succesfully Created",
+  "message": "Successfully Created",
   "data": {}
 }
 ```
@@ -99,7 +99,7 @@ It was built for learning purposes to understand how to model and implement rela
 ```json
 {
     "status": 200,
-    "message": "Succesfully fetched",
+    "message": "Successfully fetched",
     "data": {
         "author": [
             {
