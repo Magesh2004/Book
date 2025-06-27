@@ -57,14 +57,7 @@ It was built for learning purposes to understand how to model and implement rela
 {
   "status": 201,
   "message": "Succesfully Created",
-  "data": {
-    "author": {
-      "name": "Dan Brown",
-      "bio": "Author of thrillers",
-      "books": [],
-      "_id": "685d17e8bd83d82420c2b888"
-    }
-  }
+  "data": {}
 }
 ```
 
@@ -72,7 +65,7 @@ It was built for learning purposes to understand how to model and implement rela
 
 ### 📥 Create a Book for an Author
 
-**POST** `/author/60f...`
+**POST** `/author/1`
 
 **Request Body:**
 
@@ -90,16 +83,8 @@ It was built for learning purposes to understand how to model and implement rela
 ```json
 {
   "status": 201,
-  "message": "Successfully created",
-  "data": {
-    "book": {
-      "name": "The tester",
-      "nof_pages": 569,
-      "_id": "685d198d8a8828ba62717c79",
-      "author": "685cf57456376fb2ab9f446a",
-      "__v": 0
-    }
-  }
+  "message": "Succesfully Created",
+  "data": {}
 }
 ```
 
@@ -107,31 +92,31 @@ It was built for learning purposes to understand how to model and implement rela
 
 ### 📤 Get an Author with Books
 
-**GET** `http://localhost:8000/author/685cf57456376fb2ab9f446a`
+**GET** `http://localhost:8000/author/1`
 
 **Response:**
 
 ```json
 {
-  "status": 200,
-  "message": "Succesfully fetched",
-  "data": {
-    "author": {
-      "_id": "685cf57456376fb2ab9f446a",
-      "name": "Dan Brown",
-      "bio": "American author known for thriller novels like The Da Vinci Code.",
-      "books": [
-        {
-          "_id": "685cf57456376fb2ab9f4470",
-          "name": "The Da Vinci Code",
-          "nof_pages": 454,
-          "author": "685cf57456376fb2ab9f446a",
-          "__v": 0
-        }
-      ],
-      "__v": 1
+    "status": 200,
+    "message": "Succesfully fetched",
+    "data": {
+        "author": [
+            {
+                "id": 5,
+                "name": "Dan Brown",
+                "bio": "American author known for thriller novels like The Da Vinci Code."
+            }
+        ],
+        "book": [
+            {
+                "id": 2,
+                "name": "The Da Vinci Code",
+                "nof_pages": 454,
+                "author_id": 5
+            }
+        ]
     }
-  }
 }
 ```
 

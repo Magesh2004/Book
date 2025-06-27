@@ -1,37 +1,32 @@
-const Author = require('../models/author');
-const Book = require('../models/book');
+const {connection} = require('../config/database')
 const {sendResponse} =  require('../config/sendResponse');
 const ExpressError = require('../utils/ExpressError');
 
 module.exports.createBook = async(req,res)=>{
     const {id} = req.params;
-    const author = await Author.findById(id);
-    const book = new Book(req.body.book);
-    book.author = author._id;
-    author.books.push(book);
-    await author.save();
-    await book.save();
-    sendResponse(res,201,"Successfully created",{book})
+    const {name,nof_pages} = req.body;
+    book = await connection.query('insert into book(name,nof_pages,author_id) values($1,$2,$3)',[name,nof_pages,id]);
+    sendResponse(res,201,"Successfully created")
 }
 
 module.exports.getBook = async(req,res)=>{
     const {bookid} = req.params;
-    const book = await Book.findById(bookid);
-    if(!book){
-        throw new ExpressError(404,"invalid book")
+    const book =await connection.query('select * from book where id=$1',[bookid]);
+    if(book.rows.length == 0){
+        throw new ExpressError(404,"book not found")
     }
-    sendResponse(res,200,"Successfully fetched",{book})
+    sendResponse(res,201,"Successfully fetched",{book:book.rows})
 }
 
 module.exports.updateBook = async(req,res)=>{
     const {bookid} = req.params;
-    const book = await Book.findByIdAndUpdate(bookid,req.body.book);
-    book.save();
-    sendResponse(res,201,"Successfully updated",{book})
+    const {name} = req.body;
+    await connection.query('update book set name=$1 where id = $2',[name,bookid]);
+    sendResponse(res,201,"Successfully Updaed")
 }
 
 module.exports.deleteBook = async(req,res)=>{
     const {bookid} = req.params;
-    const book = await Book.findByIdAndDelete(bookid);
+    await connection.query('delete from book where id = $1',[bookid])
     sendResponse(res,200,"Successfully deleted")
 }

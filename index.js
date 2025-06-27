@@ -1,12 +1,14 @@
 const express = require('express');
 const app = express();
-const connectDB = require('./config/database');
+const {connectDB} = require('./config/database');
 
 const ExpressError = require('./utils/ExpressError');
 const {sendResponse} = require('./config/sendResponse')
 
 const authorRouter = require('./routes/author');
 const bookRouter = require('./routes/book');
+
+require('dotenv').config()
 
 
 app.listen(8000,()=>{
@@ -21,7 +23,6 @@ app.use(express.json())
 
 app.use('/author',authorRouter)
 app.use('/author/:id/book',bookRouter)
-
 app.all('/{*any}',(req,res,next)=>{
     next(new ExpressError(404,"Page not found"))
 })
