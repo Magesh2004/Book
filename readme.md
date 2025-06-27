@@ -143,8 +143,4 @@ It was built for learning purposes to understand how to model and implement rela
 
 📧 **Email:** [mageshbalram@gmail.com](mailto:mageshbalram@gmail.com)
 
-💼 **GitHub:** [github.com/your-username](https://github.com/your-username) _(replace this with your real GitHub link)_
 
----
-
-Let me know if you want this turned into a `README.md` file or want badges, license, or project structure sections added too.
