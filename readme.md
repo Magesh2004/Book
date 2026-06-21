@@ -122,10 +122,23 @@ It was built for learning purposes to understand how to model and implement rela
 
 ---
 
+## Running Tests
+
+To run unit tests using Jest, use the following command:
+
+```
+npm test
+```
+
+This will execute all test files in the project.
+
+---
+
 ## 🙋 **Author & Contact**
 
 **Author:** Magesh Balram
 
 📧 **Email:** [mageshbalram@gmail.com](mailto:mageshbalram@gmail.com)
+
 
 
